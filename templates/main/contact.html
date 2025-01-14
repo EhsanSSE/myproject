@@ -1,11 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-</head>
-<body>
-    <h1>Welcome to Contact page</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- banner-section start -->
+    <section class="inner-banner-section pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="inner-banner-content">
+                        <h2 class="title">contact with us</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner-section end -->
+
+
+    <a href="#" class="scrollToTop"><img src={% static "images/aeroplane.png" %} alt="image"></a>
+
+     <!-- breadcrumb-section start -->
+     <div class="breadcrumb-section">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main:index' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- breadcrumb-section end -->
+
+
+    <!-- contact-section start -->
+    <section class="contact-section pt-120 pb-120">
+        <div class="container">
+            <div class="account-wrapper">
+                <div class="login-area account-area change-form">
+                    <div class="row m-0">
+                        <div class="col-lg-5 p-0">
+                            <div class="change-catagory-area">
+                                <h3 class="title">send us a Messages</h3>
+                                <form class="contact-form" id="contact_form_submit">
+                                    <div class="form-group">
+                                        <input type="text" id="name" name="text" placeholder="full name">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" id="email" name="email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea placeholder="Message" id="message" cols="30" rows="2"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="cmn-btn.active" value="submit now">
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 p-0">
+                            <div class="common-form-style bg-one create-account">
+                                <h3 class="title">contact info</h3>
+                                <p>Quam arcu ac, at adipiscing justo lectus nibh massa. Quam euismod, nam eu tellus, massa non mauris consequaturna mauris aliquet lorem molestie nec.</p>
+                                <ul class="account-item">
+                                    <li>USA, Callifornia 20, Firs Avenue,Callifornia</li>
+                                    <li>example@.com demo@.com</li>
+                                    <li>01234567890 0124567890</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact-section end -->
+
+{% endblock %}
