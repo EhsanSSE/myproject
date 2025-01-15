@@ -38,123 +38,38 @@
   <div class="container">
     <div class="row justify-content-center mb-30-none">
       <div class="col-lg-8">
+        {% for post in posts %}
         <div class="blog-item mb-60">
           <div class="blog-thumb--style2">
-            <img src={% static "images/blog-13.png" %} alt="blog image">
-            <a href="{% url 'blog:details' %}" class="overlay-date"
-              >28 march 2019</a
-            >
+            <img style="object-fit: cover; width: 100%; height: 500px;" src={{post.image.url}} alt="blog image">
+            <a href="{% url 'blog:details' pk=post.id %}" class="overlay-date">{{post.published_date}}</a>
           </div>
           <div class="blog-content--style2">
             <h3 class="title">
-              <a href="{% url 'blog:details' %}"
-                >Pellentesque Elementum Velegestas Osuere Diam Sollicitudin</a
+              <a href="{% url 'blog:details' pk=post.id %}"
+                >{{post.title}}</a
               >
             </h3>
             <div class="meta-post d-flex flex-wrap">
               <div class="meta-user">
-                <a href="{% url 'blog:details' %}"><span>by admin</span></a>
+                <a href="{% url 'blog:details' pk=post.id %}"><span>by {{post.author.get_full_name}}</span></a>
               </div>
+              {% for cat in post.category.all %}
               <div class="meta-user" style="padding-left: 10px">
-                <a href="{% url 'blog:details' %}"><span>air crew</span></a>
+                <a href="{% url 'blog:details' pk=post.id %}"><span>{{ cat.name }}</span></a>
               </div>
+              {% endfor %}
               <div class="meta-details">
-                <a href="{% url 'blog:details' %}"><span>0 views</span></a>
+                <a href="{% url 'blog:details' pk=post.id %}"><span><i class="fas fa-eye"></i> {{post.counted_views}} views</span></a>
               </div>
             </div>
             <p>
-              Quis aenean, a cursus ut ultrices felis mauris metus, nascetur
-              erat, vulputate sed luctus vevamus harum vitae. Auctor etiam
-              magna. Leo orci lorem posuere. Pede ligula vitae placerat
-              vestibulum sollicitudin facilisis, nec euismod faucibus viverra
+             {{post.content}}
             </p>
-            <a href="{% url 'blog:details' %}" class="cmn-btn">Read More</a>
+            <a href="{% url 'blog:details' pk=post.id %}" class="cmn-btn">Read More</a>
           </div>
         </div>
-        <div class="blog-item mb-60">
-          <div class="blog-thumb--style2">
-            <img src={% static "images/blog-14.png" %} alt="blog image">
-            <a href="#0" class="overlay-date">28 march 2019</a>
-          </div>
-          <div class="blog-content--style2">
-            <h3 class="title">
-              <a href="blog-details.html"
-                >Accumsan Facilisieu Thingn Mauris Nunc Rutrum</a
-              >
-            </h3>
-            <div class="meta-post d-flex flex-wrap">
-              <div class="meta-user">
-                <a href="#"><span>by admin</span></a>
-              </div>
-              <div class="meta-details">
-                <a href="#"><span>air crew</span></a>
-              </div>
-            </div>
-            <p>
-              Quis aenean, a cursus ut ultrices felis mauris metus, nascetur
-              erat, vulputate sed luctus vevamus harum vitae. Auctor etiam
-              magna. Leo orci lorem posuere. Pede ligula vitae placerat
-              vestibulum sollicitudin facilisis, nec euismod faucibus viverra
-            </p>
-            <a href="blog-details.html" class="cmn-btn">Read More</a>
-          </div>
-        </div>
-        <div class="blog-item mb-60">
-          <div class="blog-thumb--style2">
-            <img src={% static "images/blog-15.png" %} alt="blog image">
-            <a href="#0" class="overlay-date">28 march 2019</a>
-          </div>
-          <div class="blog-content--style2">
-            <h3 class="title">
-              <a href="blog-details.html"
-                >tristique nonummyelit Necnam vitaerat</a
-              >
-            </h3>
-            <div class="meta-post d-flex flex-wrap">
-              <div class="meta-user">
-                <a href="#"><span>by admin</span></a>
-              </div>
-              <div class="meta-details">
-                <a href="#"><span>air crew</span></a>
-              </div>
-            </div>
-            <p>
-              Quis aenean, a cursus ut ultrices felis mauris metus, nascetur
-              erat, vulputate sed luctus vevamus harum vitae. Auctor etiam
-              magna. Leo orci lorem posuere. Pede ligula vitae placerat
-              vestibulum sollicitudin facilisis, nec euismod faucibus viverra
-            </p>
-            <a href="blog-details.html" class="cmn-btn">Read More</a>
-          </div>
-        </div>
-        <div class="blog-item mb-60">
-          <div class="blog-thumb--style2">
-            <img src={% static "images/blog-16.png" %} alt="blog image">
-            <a href="#0" class="overlay-date">28 march 2019</a>
-          </div>
-          <div class="blog-content--style2">
-            <h3 class="title">
-              <a href="blog-details.html"
-                >Pellentesque Elementum Velegestas Osuere Diam Sollicitudin</a
-              >
-            </h3>
-            <div class="meta-post d-flex flex-wrap">
-              <div class="meta-user">
-                <a href="#"><span>by admin</span></a>
-              </div>
-              <div class="meta-details">
-                <a href="#"><span>air crew</span></a>
-              </div>
-            </div>
-            <p>
-              Quis aenean, a cursus ut ultrices felis mauris metus, nascetur
-              erat, vulputate sed luctus vevamus harum vitae. Auctor etiam
-              magna. Leo orci lorem posuere. Pede ligula vitae placerat
-              vestibulum sollicitudin facilisis, nec euismod faucibus viverra
-            </p>
-            <a href="blog-details.html" class="cmn-btn">Read More</a>
-          </div>
-        </div>
+        {% endfor %}
         <div class="row justify-content-center">
           <ul class="pagination">
             <li><a href="#">01</a></li>
@@ -196,7 +111,7 @@
                   <img src={% static "images/popular-1.png" %} alt="blog-image">
                 </div>
                 <div class="popular-item-content">
-                  <a href="{% url 'blog:details' %}"
+                  <a href="#"
                     ><h5>accumsan condimtum. ecenas</h5></a
                   >
                   <span class="blog-user">post by admin</span
@@ -208,7 +123,7 @@
                   <img src={% static "images/popular-2.png" %} alt="blog-image">
                 </div>
                 <div class="popular-item-content">
-                  <a href="{% url 'blog:details' %}"
+                  <a href="#"
                     ><h5>accumsan condimtum. ecenas</h5></a
                   >
                   <span class="blog-user">post by admin</span
@@ -220,7 +135,7 @@
                   <img src={% static "images/popular-3.png" %} alt="blog-image">
                 </div>
                 <div class="popular-item-content">
-                  <a href="{% url 'blog:details' %}"
+                  <a href="#"
                     ><h5>accumsan condimtum. ecenas</h5></a
                   >
                   <span class="blog-user">post by admin</span
