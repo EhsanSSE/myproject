@@ -11,6 +11,13 @@ def blog_view(request):
     return render(request, 'blog/blog-3.html', context)
 
 def blog_details_view(request, pk):
-    post = get_object_or_404(Post, pk=pk, status=True, published_date__lte=now())
-    context = {'post': post}
+    posts = Post.objects.filter(status=True, published_date__lte=now())
+    post = get_object_or_404(posts, pk=pk)
+    post.counted_views += 1
+    post.save()
+    posts_list = list(posts)
+    index_post = posts_list.index(post)
+    previous_post = posts_list[index_post - 1] if index_post > 0 else None
+    next_post = posts_list[index_post + 1] if index_post < len(posts_list) -1 else None
+    context = {'post': post, 'previous_post': previous_post, 'next_post': next_post}
     return render(request, 'blog/blog-details.html', context)
