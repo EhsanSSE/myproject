@@ -1,0 +1,8 @@
+<div class="widget-box mb-30">
+    <span class="caption">cetegories</span>
+    <ul class="category-content">
+        {% for name, count in categories.items %}
+      <li><a href="#">{{name}}</a><span class="count">{{count}}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
