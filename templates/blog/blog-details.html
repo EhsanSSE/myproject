@@ -53,7 +53,7 @@
                                 </div>
                                 {% for cat in post.category.all %}
                                 <div class="meta-user" style="padding-left: 10px;">
-                                    <a href="#"><span>{{cat.name}}</span></a>
+                                    <a href="{% url 'blog:category' category=cat.name %}"><span>{{cat.name}}</span></a>
                                 </div>
                                 {% endfor %}
                                 <div class="meta-details">
@@ -130,14 +130,7 @@
                 </div>
                 <div class="col-lg-4 col-sm-8">
                     <div class="sidebar">
-                        <div class="widget-box mb-30">
-                            <div class="search-option">
-                                <input type="text" name="search" placeholder="Type Key word">
-                            </div>
-                            <button class="search-submit" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
+                        {% include "blog/blog-search.html" %}
                     
                         {% postcategories %}
 
