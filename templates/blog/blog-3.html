@@ -75,10 +75,15 @@
         {% endfor %}
         <div class="row justify-content-center">
           <ul class="pagination">
-            <li><a href="#">01</a></li>
-            <li><a href="#">02</a></li>
-            <li><a href="#">03</a></li>
-            <li><a href="#">04</a></li>
+            {% if posts.has_previous %}
+            <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+            {% endif %}
+            {% for num in posts.paginator.page_range %}
+            <li><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endfor %}
+            {% if posts.has_next %}
+            <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
