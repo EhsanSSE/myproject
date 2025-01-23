@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "main",
     "blog",
-    "django.contrib.humanize"
+    "django.contrib.humanize",
+    "django_extensions",
+    "django.contrib.sites"
 ]
 
 MIDDLEWARE = [
@@ -134,6 +136,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# define bootstrap alerts link to messages tag
 
 from django.contrib import messages
 
@@ -144,3 +147,8 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+
+# sites framework
+
+SITE_ID = 2
