@@ -1,8 +1,9 @@
+{% load humanize %}
 <div class="widget-box mb-30">
     <span class="caption">cetegories</span>
     <ul class="category-content">
         {% for name, count in categories.items %}
-      <li><a href="{% url 'blog:category' category=name %}">{{name}}</a><span class="count">{{count}}</span></li>
+      <li><a href="{% url 'blog:category' category=name %}">{{name}}</a><span class="count">{{count|apnumber}}</span></li>
       {% endfor %}
     </ul>
   </div>

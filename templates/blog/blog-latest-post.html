@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="widget-box mb-30">
     <span class="caption">latest post</span>
     <div class="popular-item-area">
@@ -8,7 +9,7 @@
             </div>
             <div class="popular-item-content">
                 <a href="{% url 'blog:details' pk=post.id %}"><h5>{{post.title}}</h5></a>
-                <span class="blog-user">post by {{post.author.first_name}}</span><span class="blog-date">{{post.published_date|date:'d M Y'}}</span>
+                <span class="blog-user">post by {{post.author.first_name}}</span><span class="blog-date">{{post.published_date|naturaltime}}</span>
             </div>
         </div>
         {% endfor %}
