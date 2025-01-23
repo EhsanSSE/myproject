@@ -80,6 +80,24 @@
     </header>
     <!-- header-section end -->
 
+    {% for message in messages %}
+        <div class="alert alert-dismissible {{ message.tags }}" role="alert">
+              <div class="d-flex justify-content-end">
+                    <button type="button"
+                            class="close btn-sm btn btn-danger"
+                            data-dismiss="alert"
+                            aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                    </button>
+              </div>
+              <hr>
+              <p class="text-center">
+                    {{ message | safe }}
+              </p>
+        </div>
+      {% endfor %}
+
+
     {% block  content %}
 
     {% endblock %}
@@ -95,9 +113,10 @@
               </div>
             </div>
             <div class="col-lg-5">
-              <form class="call-action-form">
+              <form class="call-action-form" action="{% url 'main:newslaters' %}" method="post">
+                {% csrf_token %}
                 <div class="form-group">
-                  <input type="text" name="text" placeholder="Get Services" />
+                  <input type="email" name="email" placeholder="Get Services" />
                 </div>
                 <button type="submit" class="subscribe-btn">
                   <i class="fas fa-paper-plane"></i>
