@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "robots",
     "debug_toolbar",
     "taggit",
+    "tinymce",
 ]
 
 MIDDLEWARE = [
@@ -167,3 +168,16 @@ ROBOTS_USE_HOST = True
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+#tinyMCE
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 500,
+    'width': '100%',
+    'plugins': 'image code link lists',
+    'toolbar': 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
+    'image_advtab': True,
+    'images_upload_url': '/tinymce-upload/',  # URL upload file
+    'automatic_uploads': True,
+}
+

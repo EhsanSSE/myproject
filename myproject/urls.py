@@ -23,6 +23,7 @@ from django.contrib.sitemaps.views import sitemap
 from main.sitemaps import StaticViewSitemap
 from blog.sitemaps import BlogSitemap
 from debug_toolbar.toolbar import debug_toolbar_urls
+from myproject.utils import tinymce_upload
 
 sitemaps = {
     "static": StaticViewSitemap,
@@ -40,6 +41,7 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap",
     ),
     re_path(r'^robots\.txt', include('robots.urls')),
+    path('tinymce-upload/', tinymce_upload, name='tinymce_upload'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
