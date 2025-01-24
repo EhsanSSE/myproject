@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "django.contrib.sites",
     "django.contrib.sitemaps",
-    "robots"
+    "robots",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "myproject.urls"
@@ -159,3 +161,8 @@ SITE_ID = 2
 
 ROBOTS_USE_SITEMAP = True
 ROBOTS_USE_HOST = True
+
+# django debug toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
