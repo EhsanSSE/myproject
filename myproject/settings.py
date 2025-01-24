@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "robots"
 ]
 
 MIDDLEWARE = [
@@ -153,3 +154,8 @@ MESSAGE_TAGS = {
 # sites framework
 
 SITE_ID = 2
+
+# robots module
+
+ROBOTS_USE_SITEMAP = True
+ROBOTS_USE_HOST = True
