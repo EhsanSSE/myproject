@@ -1,0 +1,8 @@
+<div class="widget-box mb-30">
+    <span class="caption">news tag</span>
+    <div class="tag-item-wrapper">
+        {% for tag in tags.all %}
+        <a href="{% url 'blog:tag' tag_slug=tag.slug %}" class="tag-item">{{ tag.name }}</a>
+        {% endfor %}
+    </div>
+</div>

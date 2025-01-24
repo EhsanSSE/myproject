@@ -1,6 +1,7 @@
 from django import template
 from blog.models import Post, Category
 from django.utils.timezone import now
+from taggit.models import Tag
 
 
 register = template.Library()
@@ -19,3 +20,8 @@ def postcategories():
     for name in categories:
         cat_dic[name]=posts.filter(category=name).count()
     return {'categories': cat_dic}
+
+@register.inclusion_tag('blog/blog-tags.html')
+def Newstag():
+    tags = Tag.objects.all()
+    return {'tags': tags}

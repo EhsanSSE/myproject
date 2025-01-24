@@ -6,12 +6,14 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
-def blog_view(request, category=None, author=None):
+def blog_view(request, category=None, author=None, tag_slug=None):
     filters = {'status': True, 'published_date__lte': now()}
     if category:
         filters['category__name'] = category
     elif author:
         filters['author__first_name'] = author
+    elif tag_slug:
+        filters['tags__slug'] = tag_slug
 
     posts = Post.objects.filter(**filters)
     
