@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "multi_captcha_admin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "taggit",
     "tinymce",
+    "captcha",
 ]
 
 MIDDLEWARE = [
@@ -177,7 +179,12 @@ TINYMCE_DEFAULT_CONFIG = {
     'plugins': 'image code link lists',
     'toolbar': 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
     'image_advtab': True,
-    'images_upload_url': '/tinymce-upload/',  # URL upload file
+    'images_upload_url': '/tinymce-upload/',
     'automatic_uploads': True,
 }
 
+# captcha
+
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
+}
