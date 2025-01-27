@@ -80,46 +80,53 @@
                         </div>
                     </div>
                     <div class="comments-section">
-                        <h3 class="title">02  comments</h3>
+                        <h3 class="title">{{comments.count}}  comments</h3>
                         <ul class="comment-wrapper">
                             <li>
+                                {% for comment in comments %}
                                 <div class="comment-item">
                                     <div class="comment-thumb">
-                                        <a href="#"><img src={% static "images/comment-1.png" %} alt="blog"></a>
+                                        <a href="#"><img src={{comment.image.url}} alt="blog"></a>
                                     </div>
                                     <div class="comment-content">
-                                        <h6 class="sub-title"><a href="#">raja miya </a></h6>
-                                        <span>10 hours ago</span>
-                                        <p>Lorem ipsum dolor sit amet, lobortis nulla lorem, sed ac facilisis aenean. Puru lectus diam fermentum, orci massa, vulputate non amet lectus non ullamco</p>
-                                        <a href="#" class="reply-button">Reply</a>
+                                        <h4 class="sub-title"><a href="#">{{comment.name}}</a></h4>
+                                        <span>{{comment.created_date|timesince}} ago</span>
+                                        <p>{{comment.message}}</p>
+                                        {% for reply in comment.replies.all %}
+                                            <div class="comment-content">
+                                                <h6 class="sub-title">{{reply.name}}</h6>
+                                                <span>{{reply.created_date|timesince}} ago</span>
+                                                <p>{{reply.message}}</p>
+                                            </div>
+                                        {% endfor %}
+                                        <a href="#" class="reply-button" onclick="toggleReplyForm({{ comment.id }}); return false;">Reply</a>
+                                        <div id="reply-container-{{ comment.id }}" style="display: none;">
+                                        <form action="{% url 'blog:details' pk=post.id %}" method="post">
+                                            {% csrf_token %}
+                                            {{form.as_p}}
+                                            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                            <input class="btn btn-primary" type="submit" value="Replay">
+                                        </form>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="comment-item">
-                                    <div class="comment-thumb">
-                                        <a href="#"><img src={% static "images/comment-2.png" %} alt="blog"></a>
-                                    </div>
-                                    <div class="comment-content">
-                                        <h6 class="sub-title"><a href="#">hinif khan</a></h6>
-                                        <span>15 jun 2019 at 10.00 am</span>
-                                        <p>TLorem ipsum dolor sit amet, lobortis nulla lorem, sed ac facilisis aenean. Puru lectus diam fermentum, orci massa, vulputate non amet lectus non ullamco</p>
-                                        <a href="#" class="reply-button">Reply</a>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </li>
                         </ul>
                     </div>
                     <div class="leave-comment">
                         <h3 class="title">Leave A Comment</h3>
-                        <form  class="comment-form">
+                        <form  class="comment-form" action="{% url 'blog:details' pk=post.id %}" method="post">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-sm-6 form-group mb-30">
-                                    <input type="text" name="text" placeholder="Name*">
+                                    <input type="text" name="name" placeholder="Name*">
                                 </div>
                                 <div class="col-sm-6 form-group mb-30">
                                     <input type="text" name="email" placeholder="Email*">
                                 </div>
                                 <div class="col-sm-12 form-group mb-30">
-                                    <textarea placeholder="Write Message" cols="30" rows="2"></textarea>
+                                    <textarea placeholder="Write Message" name="message" cols="30" rows="2"></textarea>
                                 </div>
                                 <div class="col-sm-12 form-group mb-30">
                                     <input type="submit" class="cmn-btn" value="Post Comment">

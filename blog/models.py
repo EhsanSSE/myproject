@@ -33,3 +33,20 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("blog:details", kwargs={"pk": self.pk})
     
+
+class Comment(models.Model):
+    post = models.ForeignKey("Post", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='users', default='users/default-user.png')
+    name = models.CharField(max_length=50)
+    email = models.EmailField(blank=True)
+    message = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+    parent = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='replies')
+
+    class Meta:
+        ordering = ['created_date']
+
+    def __str__(self):
+        return 'Comment by {}'.format(self.name)    

@@ -228,6 +228,19 @@
       <script src={% static "js/jquery.paroller.min.js" %}></script>
       <!-- main -->
       <script src={% static "js/main.js" %}></script>
+      <script>
+        function toggleReplyForm(commentId) {
+          const replyContainer = document.getElementById(`reply-container-${commentId}`);
+      
+          // Toggle the form visibility
+          if (replyContainer.style.display === 'none' || replyContainer.style.display === '') {
+              replyContainer.style.display = 'block'; // Show the form
+          } else {
+              replyContainer.style.display = 'none'; // Hide the form
+          }
+      }
+      
+      </script>
     </body>
   
     <!-- index.html  30 Nov 2019 03:18:45 GMT -->
