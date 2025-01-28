@@ -103,9 +103,28 @@
                                         <div id="reply-container-{{ comment.id }}" style="display: none;">
                                         <form action="{% url 'blog:details' pk=post.id %}" method="post">
                                             {% csrf_token %}
-                                            {{form.as_p}}
-                                            <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                                            <input class="btn btn-primary" type="submit" value="Replay">
+                                            <div class="row">
+                                                {% if request.user.is_authenticated %}
+                                                <input type="hidden" name="name" value="{{request.user.username}}">
+                                                <input type="hidden" name="email" value="{{request.user.email}}">
+                                                {% else %}
+                                                <div class="col-sm-6 form-group mb-30">
+                                                    <input type="text" name="name" placeholder="Name*">
+                                                </div>
+                                                <div class="col-sm-6 form-group mb-30">
+                                                    <input type="text" name="email" placeholder="Email">
+                                                </div>
+                                                {% endif %}
+                                                <div class="col-sm-12 form-group mb-30">
+                                                    <textarea placeholder="Write Message" name="message" cols="30" rows="2"></textarea>
+                                                </div>
+                                                <input type="hidden" name="parent_id" value="{{ comment.id }}">
+
+                                                <div class="col-sm-12 form-group mb-30">
+                                                    <input type="submit" class="cmn-btn" value="Reply">
+                                                </div>
+                                            </div>
+                
                                         </form>
                                         </div>
                                     </div>
@@ -119,12 +138,17 @@
                         <form  class="comment-form" action="{% url 'blog:details' pk=post.id %}" method="post">
                             {% csrf_token %}
                             <div class="row">
+                                {% if request.user.is_authenticated %}
+                                <input type="hidden" name="name" value="{{request.user.username}}">
+                                <input type="hidden" name="email" value="{{request.user.email}}">
+                                {% else %}
                                 <div class="col-sm-6 form-group mb-30">
                                     <input type="text" name="name" placeholder="Name*">
                                 </div>
                                 <div class="col-sm-6 form-group mb-30">
-                                    <input type="text" name="email" placeholder="Email*">
+                                    <input type="text" name="email" placeholder="Email">
                                 </div>
+                                {% endif %}
                                 <div class="col-sm-12 form-group mb-30">
                                     <textarea placeholder="Write Message" name="message" cols="30" rows="2"></textarea>
                                 </div>

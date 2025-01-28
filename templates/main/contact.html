@@ -44,12 +44,17 @@
                                 <h3 class="title">send us a Messages</h3>
                                 <form class="contact-form" action="{% url 'main:contact' %}" method="post">
                                     {% csrf_token %}
+                                    {% if request.user.is_authenticated %}
+                                    <input type="hidden" name="name" value="{{request.user.username}}">
+                                    <input type="hidden" name="email" value="{{request.user.email}}">
+                                    {% else %}
                                     <div class="form-group">
                                         <input type="text" name="name" placeholder="full name">
                                     </div>
                                     <div class="form-group">
                                         <input type="email" name="email" placeholder="Email">
                                     </div>
+                                    {% endif %}
                                     <div class="form-group">
                                         <input type="text" name="subject" placeholder="Subject">
                                     </div>

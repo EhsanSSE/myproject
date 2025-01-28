@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+    <!-- banner-section start -->
+    <section class="inner-banner-section pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="inner-banner-content">
+                        <h2 class="title">create account</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner-section end -->
+
+
+    <a href="#" class="scrollToTop"><img src={% static 'images/aeroplane.png' %} alt="image"></a>
+
+     <!-- breadcrumb-section start -->
+     <div class="breadcrumb-section">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'main:index' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- breadcrumb-section end -->
+
+
+    <!-- register-section start -->
+    <section class="register-section pt-120 pb-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="register-form-area account-area change-form">
+                        <a href="{% url 'account:login' %}" class="cmn-btn-active account-control-button">Login</a>
+                        <a href="#" class="cmn-btn account-control-button ml-3">Registration</a>
+                        <h3 class="title">well come to Flio</h3>
+                        <p>Maecenas mollis dictum aliquam Velit sapien  </p>
+                        <form class="create-account-form" action="{% url 'account:register' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input name="username" type="text" placeholder="User Name">
+                            </div>
+                            <div class="form-group">
+                                <input name="email" type="text" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input name="password1" type="password" id="myInput" placeholder="Password">
+                                <a href="#0" id="show-pass-one" class="show-pass"><i class="fas fa-eye"></i></a>
+                            </div>
+                            <div class="form-group">
+                                <input name="password2" type="password" id="myInputTwo" placeholder="Re - Password">
+                                <a href="#0" id="show-pass-two" class="show-pass"><i class="fas fa-eye"></i></a>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="create Specon account">
+                            </div>
+                        </form>
+                        <ul class="sign-up-option justify-content-center">
+                            <li>
+                                <a href="#0" class="google"><i class="fab fa-google"></i> google</a>
+                            </li>
+                            <li>
+                                <a href="#0" class="facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                            </li>
+                            <li>
+                                <a href="#0" class="twitter"><i class="fab fa-twitter"></i>Twitter</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- register-section end -->
+
+{% endblock content %}

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "taggit",
     "tinymce",
     "captcha",
+    "account"
 ]
 
 MIDDLEWARE = [
