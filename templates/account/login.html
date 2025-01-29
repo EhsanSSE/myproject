@@ -91,7 +91,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.GET.next|default:'/' }}">
                             <div class="form-group">
-                                <input type="text" name="username" placeholder="User Name">
+                                <input type="text" name="username" placeholder="User Name / Email">
                             </div>
                             <div class="form-group">
                                 <input type="password" id="myInputTwo" name="password" placeholder="Password">
@@ -108,6 +108,17 @@
                                 </li>
                             </ul>
                         </form>
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
                         <ul class="sign-up-option justify-content-center">
                             <li>
                                 <a href="#0" class="google"><i class="fab fa-google"></i> google</a>

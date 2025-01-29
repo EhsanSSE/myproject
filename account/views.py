@@ -1,31 +1,29 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from account.forms import MyUserCreationForm
+from account.forms import MyUserCreationForm, MyAuthenticationForm
 
 # Create your views here.
 
 def login_view(request):
     if not request.user.is_authenticated:
         if request.method == 'POST':
-            form = AuthenticationForm(data=request.POST)
+            form = MyAuthenticationForm(data=request.POST)
             if form.is_valid():
                 user = form.get_user()
                 login(request, user)
-                messages.success(request, "You have succesfully logged in.")
+                messages.success(request, "✅ Successfully logged in!")
                 next_url = request.POST.get("next")
                 print(next_url)
                 return redirect(next_url)
-            else:
-                messages.error(request, "Invalid username or password.")
         else:
-            form = AuthenticationForm()
+            form = MyAuthenticationForm()
 
         return render(request, 'account/login.html', {'form': form})
     else:
-        return redirect('/')
+        messages.info(request, "You are already logged in.")
+        return redirect("/")
 
 @login_required(login_url=('account:login'))
 def logout_view(request):
