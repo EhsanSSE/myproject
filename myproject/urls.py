@@ -44,6 +44,7 @@ urlpatterns = [
     re_path(r'^robots\.txt', include('robots.urls')),
     path('tinymce-upload/', tinymce_upload, name='tinymce_upload'),
     path('captcha/', include('captcha.urls')),
+    re_path('^', include('django.contrib.auth.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
