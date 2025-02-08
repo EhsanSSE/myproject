@@ -1,6 +1,8 @@
 Django>4.2,<4.3
 asgiref
 dj-database-url
+django-appconf
+django-compressor
 django-debug-toolbar
 django-extensions
 django-js-asset
@@ -13,6 +15,8 @@ django-tinymce
 djangorestframework
 pillow
 psycopg2
+rcssmin
+rjsmin
 sqlparse
 typing_extensions
 tzdata

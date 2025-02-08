@@ -65,3 +65,14 @@ MIGRATION_MODULES = {
     'main': 'migrations.main',
     'blog': 'migrations.blog',
 }
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
