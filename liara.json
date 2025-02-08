@@ -1,0 +1,30 @@
+{
+    "platform": "django",
+    "django": {
+      "pythonVersion": "3.11",
+      "collectStatic": true,
+      "compileMessages": false,
+      "modifySettings": true,
+      "timezone": "Asia/Tehran"
+      
+    },
+    "nginx": {
+    "config": "liara_nginx.conf"
+    },
+    "app": "project-net",
+    "disks": [
+      {
+        "name": "migrations",
+        "mountTo": "/usr/src/app/migrations"
+      },
+      {
+        "name": "static",
+        "mountTo": "/usr/src/app/static"
+      },
+      {
+        "name": "media",
+        "mountTo": "/usr/src/app/media"
+      }
+    ]
+      
+  }

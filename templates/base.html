@@ -152,9 +152,9 @@
               <div class="footer-widget widget-menu">
                 <h3 class="widget-title">useful link</h3>
                 <ul>
-                  <li><a href="register.html">create your account</a></li>
+                  <li><a href="{% url 'account:register' %}">create your account</a></li>
                   <li><a href="{% url 'main:about' %}">about</a></li>
-                  <li><a href="login.html">login</a></li>
+                  <li><a href="{% url 'account:login' %}">login</a></li>
                   <li><a href="{% url 'blog:index' %}">latest post</a></li>
                   <li><a href="{% url 'main:contact' %}">contact</a></li>
                 </ul>

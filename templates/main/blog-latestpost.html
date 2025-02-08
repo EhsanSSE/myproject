@@ -30,7 +30,7 @@
                       <a href="{% url 'blog:details' pk=post.id %}">{{ post.title }}</a>
                     </h3>
                     <p>
-                      {{post.content|truncatewords:30}}
+                      {{post.content|truncatewords:30|safe}}
                     </p>
                     <div
                       class="meta-post d-flex flex-wrap justify-content-between"
